@@ -150,7 +150,7 @@ export const Simulator = () => {
     // Linhas da tabela
     let currentY = tableY + headerHeight;
     
-    Object.entries(taxasParcelas).forEach(([installment, rate], index) => {
+    Object.entries(taxasParcelas).forEach(([installment], index) => {
       const results = calculateInstallment(Number(installment));
       
       // Fundo alternado
