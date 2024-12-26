@@ -8,7 +8,6 @@ import {
   Button,
   Grid,
   useTheme,
-  useMediaQuery,
   Paper,
   ButtonGroup,
   Tooltip,
@@ -41,7 +40,6 @@ const formatCurrency = (value: number) => {
 
 export const Simulator = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   
   const [loanAmount, setLoanAmount] = useState<string>('');
   const [selectedInstallment, setSelectedInstallment] = useState<number | null>(null);
@@ -62,40 +60,6 @@ export const Simulator = () => {
       interestAmount: totalAmount - amount,
       rate: rate * 100
     };
-  };
-
-  const getAllOptionsText = () => {
-    const amount = parseFloat(loanAmount.replace(/[^\d,]/g, '').replace(',', '.')) || 0;
-    if (!amount) return '';
-
-    const options = Object.entries(taxasParcelas).map(([installment, rate]) => {
-      const results = calculateInstallment(Number(installment));
-      return `▫️ ${installment}x de ${formatCurrency(results.monthlyPayment)}
-   💲 Total: ${formatCurrency(results.totalAmount)}
-   📈 Taxa: ${rate.toFixed(2)}% ao mês
-──────────────`;
-    });
-
-    return `*SIMULAÇÃO ALFA PRIME*
-━━━━━━━━━━━━━━━━━━━━━
-💰 *Valor Solicitado:* ${formatCurrency(amount)}
-
-📋 *OPÇÕES DE PARCELAMENTO:*
-
-${options.join('\n')}`;
-  };
-
-  const getShareText = () => {
-    if (!selectedInstallment) return '';
-    const results = calculateInstallment(selectedInstallment);
-    return `*SIMULAÇÃO ALFA PRIME*
-━━━━━━━━━━━━━━━━━━━━━
-💰 *Valor Solicitado:* ${formatCurrency(parseFloat(loanAmount.replace(/[^\d,]/g, '').replace(',', '.')) || 0)}
-
-📋 *OPÇÃO SELECIONADA:*
-▫️ ${selectedInstallment}x de ${formatCurrency(results.monthlyPayment)}
-💲 Total: ${formatCurrency(results.totalAmount)}
-📈 Taxa: ${results.rate.toFixed(2)}% ao mês`;
   };
 
   const handleWhatsAppClick = () => {
