@@ -1,15 +1,38 @@
 {
-  "short_name": "Simulador",
-  "name": "Simulador de Empréstimo",
+  "short_name": "Alfa Prime",
+  "name": "Simulador Alfa Prime",
+  "description": "Simulador financeiro com soluções personalizadas para você",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "64x64",
       "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#2563eb",
-  "background_color": "#f8fafc"
+  "theme_color": "#0F172A",
+  "background_color": "#F8FAFC",
+  "orientation": "portrait",
+  "categories": ["finance", "business"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Nova Simulação",
+      "url": "/",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    }
+  ]
 } 
