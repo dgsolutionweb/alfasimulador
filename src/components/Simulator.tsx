@@ -22,9 +22,7 @@ import {
 } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Share as ShareIcon,
   WhatsApp as WhatsAppIcon,
-  ContentCopy as CopyIcon,
   Calculate as CalculateIcon,
   AttachMoney as MoneyIcon,
   Close as CloseIcon,
@@ -98,20 +96,6 @@ ${options.join('\n')}`;
 ▫️ ${selectedInstallment}x de ${formatCurrency(results.monthlyPayment)}
 💲 Total: ${formatCurrency(results.totalAmount)}
 📈 Taxa: ${results.rate.toFixed(2)}% ao mês`;
-  };
-
-  const handleShare = async () => {
-    const shareText = selectedInstallment ? getShareText() : getAllOptionsText();
-    if (!shareText) return;
-
-    try {
-      await navigator.share({
-        title: 'Simulação Alfa Prime',
-        text: shareText,
-      });
-    } catch (error) {
-      handleCopy();
-    }
   };
 
   const handleWhatsAppClick = () => {
