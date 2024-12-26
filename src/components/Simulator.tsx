@@ -7,7 +7,6 @@ import {
   TextField,
   Button,
   Grid,
-  useTheme,
   Paper,
   ButtonGroup,
   Tooltip,
@@ -39,8 +38,6 @@ const formatCurrency = (value: number) => {
 };
 
 export const Simulator = () => {
-  const theme = useTheme();
-  
   const [loanAmount, setLoanAmount] = useState<string>('');
   const [selectedInstallment, setSelectedInstallment] = useState<number | null>(null);
   const [copied, setCopied] = useState(false);
