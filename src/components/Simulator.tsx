@@ -125,10 +125,9 @@ export const Simulator = () => {
     const headerHeight = 12;
     const rowHeight = 8;
     const colWidths = {
-      parcelas: 25,
-      valor: 45,
-      taxa: 30,
-      total: 45,
+      parcelas: 40,
+      valor: 65,
+      total: 65,
     };
     
     // Cabeçalho da tabela
@@ -145,9 +144,6 @@ export const Simulator = () => {
     
     doc.text('Valor Mensal', currentX, tableY + 8);
     currentX += colWidths.valor + 10;
-    
-    doc.text('Taxa', currentX, tableY + 8);
-    currentX += colWidths.taxa + 10;
     
     doc.text('Total', currentX, tableY + 8);
     
@@ -177,9 +173,6 @@ export const Simulator = () => {
       doc.text(formatCurrency(results.monthlyPayment), currentX, currentY + 5.5);
       
       currentX += colWidths.valor + 10;
-      doc.text(`${rate.toFixed(2)}%`, currentX, currentY + 5.5);
-      
-      currentX += colWidths.taxa + 10;
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2]);
       doc.text(formatCurrency(results.totalAmount), currentX, currentY + 5.5);
@@ -433,52 +426,50 @@ export const Simulator = () => {
                   })}
                 </Grid>
 
-                {selectedInstallment && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    style={{ marginTop: '3rem' }}
-                  >
-                    <Paper sx={{ p: 4, textAlign: 'center' }}>
-                      <Typography variant="h5" gutterBottom>
-                        Compartilhar Simulação
-                      </Typography>
-                      <Grid container spacing={2} justifyContent="center">
-                        <Grid item>
-                          <ButtonGroup variant="contained" size="large">
-                            <Tooltip title="WhatsApp">
-                              <Button
-                                onClick={handleWhatsAppClick}
-                                startIcon={<WhatsAppIcon />}
-                                sx={{ 
-                                  bgcolor: '#25D366', 
-                                  '&:hover': { 
-                                    bgcolor: '#128C7E',
-                                  },
-                                }}
-                              >
-                                WhatsApp
-                              </Button>
-                            </Tooltip>
-                          </ButtonGroup>
-                        </Grid>
-                        <Grid item>
-                          <Tooltip title="Baixar PDF">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  style={{ marginTop: '3rem' }}
+                >
+                  <Paper sx={{ p: 4, textAlign: 'center' }}>
+                    <Typography variant="h5" gutterBottom>
+                      Compartilhar Simulação
+                    </Typography>
+                    <Grid container spacing={2} justifyContent="center">
+                      <Grid item>
+                        <ButtonGroup variant="contained" size="large">
+                          <Tooltip title="WhatsApp">
                             <Button
-                              onClick={handleCopy}
-                              startIcon={<PdfIcon />}
-                              variant="contained"
-                              color="secondary"
+                              onClick={handleWhatsAppClick}
+                              startIcon={<WhatsAppIcon />}
+                              sx={{ 
+                                bgcolor: '#25D366', 
+                                '&:hover': { 
+                                  bgcolor: '#128C7E',
+                                },
+                              }}
                             >
-                              {copied ? "PDF Gerado!" : "Gerar PDF"}
+                              WhatsApp
                             </Button>
                           </Tooltip>
-                        </Grid>
+                        </ButtonGroup>
                       </Grid>
-                    </Paper>
-                  </motion.div>
-                )}
+                      <Grid item>
+                        <Tooltip title="Baixar PDF">
+                          <Button
+                            onClick={handleCopy}
+                            startIcon={<PdfIcon />}
+                            variant="contained"
+                            color="secondary"
+                          >
+                            {copied ? "PDF Gerado!" : "Gerar PDF"}
+                          </Button>
+                        </Tooltip>
+                      </Grid>
+                    </Grid>
+                  </Paper>
+                </motion.div>
               </motion.div>
             )}
           </AnimatePresence>
